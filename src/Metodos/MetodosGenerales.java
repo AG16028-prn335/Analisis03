@@ -8,6 +8,7 @@ public class MetodosGenerales {
         j.addComplex();
         j.setImplicitMul(true);
     }
+
     public String DivSinteticaR(double xi){
         String rs="";
         return rs;
