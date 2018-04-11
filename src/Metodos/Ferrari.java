@@ -1,4 +1,4 @@
 package Metodos;
-public class Biseccion {
+public class Ferrari {
     
 }
