@@ -17,6 +17,7 @@ public class MetodosGenerales {
         String rs="";
         return rs;
     }
+    //shdbfisdbfisifnsdfbskbdfsbkfsbkjfbsdj
     public double Ecuacion(String s, double n){
         double res;
         j.addVariable("x", n);
