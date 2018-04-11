@@ -4,7 +4,6 @@ public class MetodoMuller {
     public double Muller(String cad,double x,double x1,double x2){
         double h,h1,s,s1,a,b,c,x3,es,ea;
         es=(0.5*Math.pow(10,-1));
-        
         do {
             h=x1-x;
             h1=x2-x1;

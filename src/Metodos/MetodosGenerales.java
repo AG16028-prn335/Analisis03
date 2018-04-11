@@ -1,23 +1,17 @@
 package Metodos;
-
 import org.nfunk.jep.JEP;
-
-
 public class MetodosGenerales {
    JEP j = new JEP();
-
     public MetodosGenerales() {
         j.addStandardConstants();
         j.addStandardFunctions();
         j.addComplex();
         j.setImplicitMul(true);
     }
-         
-    public static String DivSinteticaR(double xi){
+    public String DivSinteticaR(double xi){
         String rs="";
         return rs;
     }
-    //shdbfisdbfisifnsdfbskbdfsbkfsbkjfbsdj
     public double Ecuacion(String s, double n){
         double res;
         j.addVariable("x", n);
