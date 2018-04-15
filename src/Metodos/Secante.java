@@ -2,7 +2,7 @@
 package Metodos;
 
 public class Secante {
-    public Secante() {
+    public double secante() {
         int cifS = 3, i = 0;
         double x0 = 0, x1 = 1, f0 = 0, f1 = 0, xi = 0, error = 100;
         double nivTolerancia = 0;
@@ -51,6 +51,7 @@ public class Secante {
                 i++;
            }
         }
+        return xi;
     }
 
 }

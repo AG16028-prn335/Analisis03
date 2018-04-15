@@ -1,6 +1,6 @@
 package Metodos;
 public class Tartaglia {
-     public Tartaglia() {
+     public double tartaglia() {
         double x = 4, a = -8, b = -11, c = -3, d, h, g, x1 = 0, x2 = 0, x3 = 0, teta,p,q,irre=0;
 
         if (x != 1) {
@@ -50,6 +50,6 @@ public class Tartaglia {
         x3=x2;
         System.out.println("x2: " + x3+"+"+irre+"i");
         }
-
+return (x1);
     } 
 }
