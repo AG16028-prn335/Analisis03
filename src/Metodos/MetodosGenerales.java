@@ -22,4 +22,18 @@ public class MetodosGenerales {
         }
        return res=j.getValue();
     }
+    
+    public double Discriminante(double a,double b,double c){
+        double rest;
+        j.addVariable("a", a);
+        j.addVariable("b", b);
+        j.addVariable("c", c);
+        j.parseExpression("b^2 -4a c");
+        if(j.hasError()){
+            System.out.println(j.getErrorInfo());
+        }
+        rest=j.getValue();
+        rest=Math.sqrt(rest);
+        return rest;
+    }
 }
