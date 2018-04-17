@@ -9,18 +9,37 @@ public class MetodosGenerales {
         j.setImplicitMul(true);
     }
 
-    public String DivSinteticaR(double xi){
-        String rs="";
-        return rs;
+    public String [] DivSintetica(double xi,int n,String s[]){
+        System.out.println("-----------div-------------");
+        String a[][]=new String[3][s.length];
+        int x=n;
+        for (int i = 0; i <n; i++) {
+            a[0][i]=s[i];
+        }
+         for (int i = 1; i <3; i++) {
+             a[i][0]=s[0];
+            for (int k = 1; k <x; k++) {
+                a[i][k]=String.valueOf((xi*(Double.parseDouble(a[i][k-1])))+Double.parseDouble(a[i-1][k]));
+            }
+            x--;
+            }
+         for (int i = 0; i <3; i++) {
+             for (int k = 0; k <s.length; k++) {
+                 System.out.print(a[i][k]+"\t");
+             }
+             System.out.println();
+        }
+         System.out.println("-------------------------------");
+         String v[]={a[1][n-1],a[2][x]};
+        return v;
     }
     public double Ecuacion(String s, double n){
-        double res;
         j.addVariable("x", n);
         j.parseExpression(s);
         if(j.hasError()){
-            System.out.println(j.getErrorInfo());
+            System.out.println("Ecuancion no entendible:\n"+j.getErrorInfo());
         }
-       return res=j.getValue();
+       return j.getValue();
     }
     
     public double Discriminante(double a,double b,double c){
@@ -35,5 +54,18 @@ public class MetodosGenerales {
         rest=j.getValue();
         rest=Math.sqrt(rest);
         return rest;
+    }
+    
+    public String[] RegExp(String cad){
+        String s="",ca[]= cad.split("x.");
+        
+        for (String ca1 : ca) {
+        s+=ca1.replaceAll("\\d+.", "");  
+        }
+        String x[]= new String[s.length()];
+        for (int i = 0; i <x.length; i++) {
+            x[i]=String.valueOf(s.charAt(i));
+        }
+        return x;
     }
 }
