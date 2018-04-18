@@ -1,5 +1,6 @@
 
 package Metodos;
+import java.util.ArrayList;
 import org.nfunk.jep.JEP;
 public class MetodosGenerales {
    JEP j = new JEP();
@@ -57,16 +58,45 @@ public class MetodosGenerales {
         return rest;
     }
     
-    public String[] RegExp(String cad){
-        String s="",ca[]= cad.split("x.");
+   public String[] RegExp(String cad) {
+        String s = "", ca[] = cad.split("\\s");
+        s = ca[0];
+        char q = ca[0].charAt(s.length() - 1);
+        int z=0;
+        String w[]= new String[1+Integer.parseInt(""+q)];
+        for (int i = 0; i < w.length ;  i++) {
+            if(z<ca.length){
+                      s = ca[z];
+                if (s.charAt(s.length() - 1) == q ) {
+                if (i == 0) {
+                    w[i] = String.valueOf(s.charAt(0));
+                } else {
+                    w[i] = String.valueOf(s.charAt(0))+String.valueOf(s.charAt(1));
+                }
+                q--;
+                z++;
+            } else if( Integer.parseInt(""+q)<2){
+                if (String.valueOf(s.charAt(s.length() - 1)).equals("x")) {
+                w[i] = String.valueOf(s.charAt(0)) + String.valueOf(s.charAt(1));
+                } else if (s.charAt(s.length() - 1) > 0) {
+                w[i] = ca[z];
+                }
+                z++;
+            }else{
+                w[i] = "0";
+                q--;
+            }
+            }
+        }
         
-        for (String ca1 : ca) {
-        s+=ca1.replaceAll("\\d+.", "");  
-        }
-        String x[]= new String[s.length()];
-        for (int i = 0; i <x.length; i++) {
-            x[i]=String.valueOf(s.charAt(i));
-        }
-        return x;
+//        for (int i = 0; i < w.length; i++) {
+//            s=w[i];
+//            if(i!=0){
+//                if (String.valueOf(s.charAt(1)).equals("x")) {
+//                w[i]=String.valueOf(s.charAt(0))+1;
+//            }
+//            }
+//        }
+        return w;
     }
 }
