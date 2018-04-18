@@ -26,17 +26,11 @@ public class Tartaglia {
             x2 = ((-4 * Math.pow(p, 2)) / (9 * p)) - a / 3;
         } else {
             p = Math.cbrt((-g + Math.sqrt(d)));
-            System.out.println("p :" + p);
             q = Math.cbrt((-g - Math.sqrt(d)));
-            System.out.println("q :" + q);
             x1 = p + q - a / 3;
-            System.out.println("x1: " + x1);
             irre = ((p - q) * Math.sqrt(3) / 2) + " i";
-            System.out.println("irreal :" + irre);
             x2 = (-((p + q) / 2) - a / 3) + "-" + irre;
-            System.out.println("x2: " + x2);
             x3 = (-((p + q) / 2) - a / 3) + "+" + irre;
-            System.out.println("x3: " + x3);
         }
         return (x1);
     }
