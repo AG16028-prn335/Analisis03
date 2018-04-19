@@ -23,7 +23,7 @@ public class bairstow {
         s0=s;
         }
         if(m.Discriminante(r, s, 0, 2)<0){
-           xii=m.Comple(r, s);
+           xii=m.Comple(r, s,1);
            xreal=xii.re();
            xim=xii.im();
         }else if(m.Discriminante(r, s, 0, 2)==0){

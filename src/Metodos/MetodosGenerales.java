@@ -165,11 +165,17 @@ public class MetodosGenerales {
         return s;
     }
     
-    public Complex Comple(double r,double s){
+    public Complex Comple(double r,double s,int n){
         double res;
+        if(n==1){
         j.addVariable("r", r);
         j.addVariable("s", s);
         j.parseExpression("(r+(r^2 +4s)^0.5)/2");
+        }else{
+            j.addVariable("u", r);
+        j.addVariable("p", s);
+        j.parseExpression("(2u -p)^0.5");
+        }
         if(j.hasError()){
             System.out.println("ERROR: "+j.getErrorInfo());
         }
