@@ -2,13 +2,14 @@ package Metodos;
 public class MetodoHorner {
     MetodosGenerales m = new MetodosGenerales();
     public double Horner(String cad,double limInf, double limSup){
-        double xi,ea=100,es,r=1,s=1,xii=0;
+        double xi,ea=100,es,r,s,xii=0;
         String coe[],coes[];
         es=(0.5*Math.pow(10,-1));
         System.out.println(es);
         if(((m.Ecuacion(cad, limInf))*(m.Ecuacion(cad, limSup)))<0){
             xi=-1.8;
             coe=m.RegExp(cad);
+            coe=m.Nox(coe);
             for (String coe1 : coe) {
                 System.out.println(coe1);
             }

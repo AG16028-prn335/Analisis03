@@ -1,6 +1,5 @@
 
 package Metodos;
-import java.util.ArrayList;
 import org.nfunk.jep.JEP;
 public class MetodosGenerales {
    JEP j = new JEP();
@@ -58,7 +57,7 @@ public class MetodosGenerales {
         return rest;
     }
     
-   public String[] RegExp(String cad) {
+     public  String[] RegExp(String cad) {
         String s = "", ca[] = cad.split("\\s");
         s = ca[0];
         char q = ca[0].charAt(s.length() - 1);
@@ -69,15 +68,15 @@ public class MetodosGenerales {
                       s = ca[z];
                 if (s.charAt(s.length() - 1) == q ) {
                 if (i == 0) {
-                    w[i] = String.valueOf(s.charAt(0));
+                    w[i] =Coefi(s) ;
                 } else {
-                    w[i] = String.valueOf(s.charAt(0))+String.valueOf(s.charAt(1));
+                    w[i] =Coefi(s);
                 }
                 q--;
                 z++;
             } else if( Integer.parseInt(""+q)<2){
                 if (String.valueOf(s.charAt(s.length() - 1)).equals("x")) {
-                w[i] = String.valueOf(s.charAt(0)) + String.valueOf(s.charAt(1));
+                w[i] = Coefi(s);
                 } else if (s.charAt(s.length() - 1) > 0) {
                 w[i] = ca[z];
                 }
@@ -88,15 +87,34 @@ public class MetodosGenerales {
             }
             }
         }
-        
-//        for (int i = 0; i < w.length; i++) {
-//            s=w[i];
-//            if(i!=0){
-//                if (String.valueOf(s.charAt(1)).equals("x")) {
-//                w[i]=String.valueOf(s.charAt(0))+1;
-//            }
-//            }
-//        }
         return w;
+    }
+    
+    public  String Coefi(String s){
+        String z="";
+        String pr=String.valueOf(s.charAt(0));
+        for (int i = 0; i < s.length(); i++) {
+            if (!pr.equals("x")) {
+                pr=String.valueOf(s.charAt(i));
+            z+=String.valueOf(s.charAt(i));
+            }
+        }
+        return z;
+    }
+    public String[] Nox(String s[]){
+        int i=0;
+        String ca;
+        String x[];
+        while(i<s.length){
+        ca=s[i];
+        x=ca.split("x");
+        ca="";
+        for (String x1 : x) {
+            ca += x1;
+        }
+        s[i]=ca;
+        i++;
+        }
+        return s;
     }
 }
