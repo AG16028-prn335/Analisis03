@@ -5,6 +5,8 @@
  */
 package Interfaces;
 
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author robal
@@ -31,23 +33,25 @@ public class General extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jtbTabal = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         btnSecante = new javax.swing.JButton();
         btnFerra = new javax.swing.JButton();
         btnTart = new javax.swing.JButton();
         btnHor = new javax.swing.JButton();
         btnMuller = new javax.swing.JButton();
-        cmbSelect = new javax.swing.JComboBox();
+        cmbFunciones = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblRaiz = new javax.swing.JLabel();
         txtRaiz = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        lblError = new javax.swing.JLabel();
         txtError = new javax.swing.JTextField();
         btnBairs = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane1.setName("METODOS "); // NOI18N
@@ -65,24 +69,28 @@ public class General extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jtbTabal);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 830, 230));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 830, 230));
 
-        jButton1.setText("Regresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/_disabled__undo.png"))); // NOI18N
+        btnRegresar.setBorderPainted(false);
+        btnRegresar.setContentAreaFilled(false);
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnRegresarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 460, -1, -1));
+        getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, 40, 30));
 
-        jButton4.setBackground(new java.awt.Color(0, 0, 0));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/_active__no.png"))); // NOI18N
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnSalir.setBackground(new java.awt.Color(0, 0, 0));
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/_active__no.png"))); // NOI18N
+        btnSalir.setBorderPainted(false);
+        btnSalir.setContentAreaFilled(false);
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnSalirActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 0, 40, 30));
+        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 10, 40, 30));
 
         btnSecante.setText("Metodo Secante");
         btnSecante.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +98,7 @@ public class General extends javax.swing.JFrame {
                 btnSecanteActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSecante, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
+        getContentPane().add(btnSecante, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 120, 30));
 
         btnFerra.setText("Metodo Ferrari");
         btnFerra.addItemListener(new java.awt.event.ItemListener() {
@@ -103,15 +111,15 @@ public class General extends javax.swing.JFrame {
                 btnFerraActionPerformed(evt);
             }
         });
-        getContentPane().add(btnFerra, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, -1, -1));
+        getContentPane().add(btnFerra, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 120, 30));
 
-        btnTart.setText("Metodo Tartalia");
+        btnTart.setText("Metodo Tartaglia");
         btnTart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTartActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTart, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, -1, -1));
+        getContentPane().add(btnTart, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 120, 30));
 
         btnHor.setText("Metodo Horner");
         btnHor.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +127,7 @@ public class General extends javax.swing.JFrame {
                 btnHorActionPerformed(evt);
             }
         });
-        getContentPane().add(btnHor, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, -1, -1));
+        getContentPane().add(btnHor, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, 110, 30));
 
         btnMuller.setText("Metodo Müller");
         btnMuller.addActionListener(new java.awt.event.ActionListener() {
@@ -127,33 +135,33 @@ public class General extends javax.swing.JFrame {
                 btnMullerActionPerformed(evt);
             }
         });
-        getContentPane().add(btnMuller, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 40, -1, -1));
+        getContentPane().add(btnMuller, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, 110, 30));
 
-        cmbSelect.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Selecione una ecuacion--", "e^(x-1) -1.5x=0", "2senx=x", "e^x - 4 = 0", "e^-(x-1)*sen(x) = 1", "4sen(x) = e^x" }));
-        cmbSelect.addItemListener(new java.awt.event.ItemListener() {
+        cmbFunciones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Selecione una ecuacion--", "e^(x-1) -1.5x=0", "2senx=x", "e^x - 4 = 0", "e^-(x-1)*sen(x) = 1", "4sen(x) = e^x" }));
+        cmbFunciones.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbSelectItemStateChanged(evt);
+                cmbFuncionesItemStateChanged(evt);
             }
         });
-        cmbSelect.addActionListener(new java.awt.event.ActionListener() {
+        cmbFunciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbSelectActionPerformed(evt);
+                cmbFuncionesActionPerformed(evt);
             }
         });
-        getContentPane().add(cmbSelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 250, -1));
+        getContentPane().add(cmbFunciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 250, -1));
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("F(x)=");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, 30, 30));
 
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("RAIZ: ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 40, -1));
+        lblRaiz.setForeground(new java.awt.Color(255, 255, 255));
+        lblRaiz.setText("RAIZ: ");
+        getContentPane().add(lblRaiz, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 40, -1));
         getContentPane().add(txtRaiz, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 160, -1));
 
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("ERROR: ");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, -1, -1));
+        lblError.setForeground(new java.awt.Color(255, 255, 255));
+        lblError.setText("ERROR: ");
+        getContentPane().add(lblError, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, -1, -1));
         getContentPane().add(txtError, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, 190, -1));
 
         btnBairs.setText("Metodo Bairstow");
@@ -162,70 +170,125 @@ public class General extends javax.swing.JFrame {
                 btnBairsActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBairs, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 40, -1, -1));
+        getContentPane().add(btnBairs, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 50, 130, 30));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo-gris.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo-negro.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        General gn = new General();
+        gn.show();
+        this.setVisible(false);
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnSecanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSecanteActionPerformed
         Oculta();
         ver(true);
+        cmbFunciones.removeAllItems();
+        cmbFunciones.addItem("----SELECCIONE----");
+        cmbFunciones.addItem("x^5 -3x^4 -23x^3 +55x^2 +74x -120");
+        cmbFunciones.addItem("x^6 -7x^4 +x^3 +3x -1");
+        cmbFunciones.addItem("ln(1+x) -cos(x)");
+        cmbFunciones.addItem("10sin(x) +3cos(X)");
+        cmbFunciones.addItem("e^(3(x-1)) -ln(x-1)^2 +1");
+        cmbFunciones.addItem("cos(0.785 -x√(1+x^2)");
     }//GEN-LAST:event_btnSecanteActionPerformed
+
+    private void btnTartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTartActionPerformed
+        Oculta();
+        ver(true);
+        jScrollPane1.setVisible(false);
+        jLabel3.setVisible(false);
+        cmbFunciones.removeAllItems();
+        cmbFunciones.addItem("----SELECCIONE----");
+        cmbFunciones.addItem("x^3 +3x -1");
+        cmbFunciones.addItem("x^3 -4.65x^2 -49.92x -76.69");
+
+    }//GEN-LAST:event_btnTartActionPerformed
+
+    private void btnHorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHorActionPerformed
+        Oculta();
+        cmbFunciones.removeAllItems();
+        cmbFunciones.addItem("----SELECCIONE----");
+        cmbFunciones.addItem("x^3 +3x -1");
+        cmbFunciones.addItem("x^3 -4.65x^2 -49.92x -76.69");
+        cmbFunciones.addItem("x^4 +x^3 +0.56x^2 -1.44x -2.88");
+        cmbFunciones.addItem("x^4 -3x^2 +5x +2");
+        cmbFunciones.addItem("x^5 -3x^4 -23x^3 +55x^2 +74x -120");
+        cmbFunciones.addItem("x^6 -7x^4 +x^3 +3x -1");
+        ver(true);    }//GEN-LAST:event_btnHorActionPerformed
+
+    private void btnMullerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMullerActionPerformed
+        Oculta();
+        cmbFunciones.removeAllItems();
+        cmbFunciones.addItem("----SELECCIONE----");
+        cmbFunciones.addItem("x^3 +3x -1");
+        cmbFunciones.addItem("x^3 -4.65x^2 -49.92x -76.69");
+        cmbFunciones.addItem("x^4 +x^3 +0.56x^2 -1.44x -2.88");
+        cmbFunciones.addItem("x^4 -3x^2 +5x +2");
+        cmbFunciones.addItem("x^5 -3x^4 -23x^3 +55x^2 +74x -120");
+        cmbFunciones.addItem("x^6 -7x^4 +x^3 +3x -1");
+        cmbFunciones.addItem("ln(1+x) -cos(x)");
+        cmbFunciones.addItem("10sin(x) +3cos(X)");
+        cmbFunciones.addItem("e^(3(x-1)) -ln(x-1)^2 +1");
+        ver(true);    }//GEN-LAST:event_btnMullerActionPerformed
+
+    private void cmbFuncionesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFuncionesItemStateChanged
+    }//GEN-LAST:event_cmbFuncionesItemStateChanged
+
+    private void btnBairsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBairsActionPerformed
+        Oculta();
+        ver(true);
+        jScrollPane1.setVisible(false);
+        jLabel3.setVisible(false);
+        cmbFunciones.removeAllItems();
+        cmbFunciones.addItem("----SELECCIONE----");
+        cmbFunciones.addItem("x^3 +3x -1");
+        cmbFunciones.addItem("x^3 -4.65x^2 -49.92x -76.69");
+        cmbFunciones.addItem("x^4 +x^3 +0.56x^2 -1.44x -2.88");
+        cmbFunciones.addItem("x^4 -3x^2 +5x +2");
+        cmbFunciones.addItem("x^5 -3x^4 -23x^3 +55x^2 +74x -120");
+        cmbFunciones.addItem("x^6 -7x^4 +x^3 +3x -1");
+    }//GEN-LAST:event_btnBairsActionPerformed
+
+    private void cmbFuncionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFuncionesActionPerformed
+
+    }//GEN-LAST:event_cmbFuncionesActionPerformed
+
+    private void btnFerraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFerraActionPerformed
+        Oculta();
+        ver(true);
+        jScrollPane1.setVisible(false);
+        jLabel3.setVisible(false);
+        cmbFunciones.removeAllItems();
+        cmbFunciones.addItem("----SELECCIONE----");
+        cmbFunciones.addItem("x^4 +x^3 +0.56x^2 -1.44x -2.88");
+        cmbFunciones.addItem("x^4 -3x^2 +5x +2");
+    }//GEN-LAST:event_btnFerraActionPerformed
 
     private void btnFerraItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_btnFerraItemStateChanged
         Oculta();
         ver(true);
     }//GEN-LAST:event_btnFerraItemStateChanged
-
-    private void btnFerraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFerraActionPerformed
-        Oculta();
-        ver(true);    }//GEN-LAST:event_btnFerraActionPerformed
-
-    private void btnTartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTartActionPerformed
-        Oculta();
-        ver(true);
-    }//GEN-LAST:event_btnTartActionPerformed
-
-    private void btnHorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHorActionPerformed
-        Oculta();
-        ver(true);    }//GEN-LAST:event_btnHorActionPerformed
-
-    private void btnMullerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMullerActionPerformed
-        Oculta();
-        ver(true);    }//GEN-LAST:event_btnMullerActionPerformed
-
-    private void cmbSelectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSelectItemStateChanged
-    }//GEN-LAST:event_cmbSelectItemStateChanged
-
-    private void btnBairsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBairsActionPerformed
-        Oculta();
-        ver(true);
-    }//GEN-LAST:event_btnBairsActionPerformed
-
-    private void cmbSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSelectActionPerformed
-
-    }//GEN-LAST:event_cmbSelectActionPerformed
     public void ver(boolean i) {
-        cmbSelect.setVisible(i);
+        cmbFunciones.setVisible(i);
         txtError.setVisible(i);
         txtRaiz.setVisible(i);
-        jLabel1.setVisible(i);
-        jLabel4.setVisible(i);
+        lblRaiz.setVisible(i);
+        lblError.setVisible(i);
         jScrollPane1.setVisible(i);
         jLabel3.setVisible(i);
 
     }
+
     public void Oculta() {
         btnBairs.setVisible(false);
         btnFerra.setVisible(false);
@@ -233,6 +296,7 @@ public class General extends javax.swing.JFrame {
         btnMuller.setVisible(false);
         btnSecante.setVisible(false);
         btnTart.setVisible(false);
+
     }
 
     /**
@@ -276,17 +340,17 @@ public class General extends javax.swing.JFrame {
     private javax.swing.JButton btnFerra;
     private javax.swing.JButton btnHor;
     private javax.swing.JButton btnMuller;
+    private javax.swing.JButton btnRegresar;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnSecante;
     private javax.swing.JButton btnTart;
-    private javax.swing.JComboBox cmbSelect;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox cmbFunciones;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtbTabal;
+    private javax.swing.JLabel lblError;
+    private javax.swing.JLabel lblRaiz;
     private javax.swing.JTextField txtError;
     private javax.swing.JTextField txtRaiz;
     // End of variables declaration//GEN-END:variables
