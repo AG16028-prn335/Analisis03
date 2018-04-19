@@ -1,6 +1,5 @@
 package Metodos;
 
-import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
 
 public class Tartaglia {
