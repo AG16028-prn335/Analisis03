@@ -7,7 +7,7 @@ public class Secante {
     public String[] secante(String fun, double x0, double x1) {
         int  i = 0;
         double f0 = 0, f1 = 0, xi = 0, error = 100, nivTolerancia = 0;
-        nivTolerancia = (0.5 * Math.pow(10, (2 -3)));
+        nivTolerancia = (0.5 * Math.pow(10, (-1)));
         f0 = m.Ecuacion(fun, x0);
         f1 = m.Ecuacion(fun, x1);
         if (f0 < 0 && f1 > 0) {
