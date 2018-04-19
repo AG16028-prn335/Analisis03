@@ -8,13 +8,19 @@ public class Ferrari {
     DefaultTableModel modelo1 = new DefaultTableModel(new Object[]{"raiz"}, 0);
 
     public DefaultTableModel ferrari(String vector[]) {
-        double a = 0, b = 0, c = 0, d1 = 0, p = 0, q = 0, r = 0;
-        if (Integer.parseInt(vector[0]) != 1) {
-            a = Integer.parseInt(vector[1]) / Integer.parseInt(vector[0]);
-            b = Integer.parseInt(vector[2]) / Integer.parseInt(vector[0]);
-            c = Integer.parseInt(vector[3]) / Integer.parseInt(vector[0]);
-            d1 = Integer.parseInt(vector[4]) / Integer.parseInt(vector[0]);
+        
+        for (int i = 0; i <vector.length; i++) {
+            System.out.println("vec:"+vector[i]);
         }
+        double a = Double.parseDouble(vector[1]), b = Double.parseDouble(vector[2]), c = Double.parseDouble(vector[3]), d1 = Double.parseDouble(vector[4]), p = 0, q = 0, r = 0;
+        if (Integer.parseInt(vector[0]) != 1) {
+            a = Double.parseDouble(vector[1]) / Double.parseDouble(vector[0]);
+            b = Double.parseDouble(vector[2]) / Double.parseDouble(vector[0]);
+            c = Double.parseDouble(vector[3]) / Double.parseDouble(vector[0]);
+            d1 = Double.parseDouble(vector[4]) / Double.parseDouble(vector[0]);
+        }
+        
+        System.out.println("a:"+a+" b:"+b+" c:"+c+" d:"+d1);
         p = (8 * b - 3 * Math.pow(a, 2)) / 8;
         q = (8 * c - 4 * a * b + Math.pow(a, 3)) / 8;
         r = (256 * d1 - 64 * a * c + 16 * Math.pow(a, 2) * b - 3 * Math.pow(a, 4)) / 256;

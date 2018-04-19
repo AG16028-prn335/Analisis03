@@ -11,13 +11,13 @@ public class Tartaglia {
         double a = 0, b = 0, c = 0, d, h, g, teta, p, q;
         Object x1,x2, x3, irre;
         if (Integer.parseInt(vector[0]) != 1) {
-            a = Integer.parseInt(vector[1]) / Integer.parseInt(vector[0]);
-            b = Integer.parseInt(vector[2]) / Integer.parseInt(vector[0]);
-            c = Integer.parseInt(vector[3]) / Integer.parseInt(vector[0]);
+            a = Double.parseDouble(vector[1]) / Double.parseDouble(vector[0]);
+            b = Double.parseDouble(vector[2]) / Double.parseDouble(vector[0]);
+            c = Double.parseDouble(vector[3]) / Double.parseDouble(vector[0]);
         } else {
-            a = Integer.parseInt(vector[1]);
-            b = Integer.parseInt(vector[2]);
-            c = Integer.parseInt(vector[3]);
+            a = Double.parseDouble(vector[1]);
+            b = Double.parseDouble(vector[2]);
+            c = Double.parseDouble(vector[3]);
         }
         h = (3 * b - Math.pow(a, 2)) / 9;
         g = (-9 * a * b + 27 * c + 2 * Math.pow(a, 3)) / 54;
