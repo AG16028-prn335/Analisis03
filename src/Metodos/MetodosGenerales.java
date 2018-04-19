@@ -154,6 +154,14 @@ public class MetodosGenerales {
             s[i] = ca;
             i++;
         }
+        for (int k = 0; k <s.length; k++) {
+            if(s[k].equals("")){
+            s[k]="1";
+            }else if(s[k].equals("+") || s[k].equals("-")){
+            s[k]+="1";    
+            }
+        }
+        
         return s;
     }
     
@@ -169,10 +177,66 @@ public class MetodosGenerales {
     }
     
     public String[] DivSintComp(double xr,double xim,String s[],int n){
-        Object a[][];
+        Object a[][]= new Object[3][s.length];
+        double nxr=0,nxim=xim,anxim=nxim;
+        String pas[]=new String[s.length];
+        String v[];
+        String paso[]=new String[s.length*2];
+        
+        int x=s.length;
+        for (int i = 0; i <s.length; i++) {
+            a[0][i]=s[i];
+        }
+        for (int i = 1; i < 3; i++) {
+            a[i][0]=s[0];
+            for (int k = 1; k<x; k++) {
+               if(i==1){
+                    if(k==1){
+                   nxr=(xr*Double.parseDouble(""+a[i][k-1])) +Double.parseDouble(""+a[i-1][k]); 
+                   a[i][k]= String.valueOf(nxr)+" "+xim;
+                }else{
+                    a[i][k]=String.valueOf(Double.parseDouble(""+a[i-1][k])+((nxr*xr)-(xim*nxim)))+" "+((nxr*xim)+(xr*nxim));
+                    anxim=nxim;
+                    nxim=(nxr*xim)+(xr*anxim);
+                    nxr=((nxr*xr)-(anxim*xim))+Double.parseDouble(""+a[i-1][k]); 
+                }
+               }else if(k==1){
+                   for (int l = 0; l <s.length; l++) {
+                       pas[l]=String.valueOf(a[1][l]);
+                   }
+                   paso[0]=pas[0]; int t=1;
+                   for (int l = 0; l < pas.length; l++) {
+                   v=Esp(String.valueOf(pas[l]));
+                       for (int m = 0; m < v.length; m++) {
+                           System.out.println("vec: "+v[m]);
+                       }
+                   }
+               }
+            }
+            for (int k = 0; k < 3; k++) {
+                for (int l = 0; l < s.length; l++) {
+                    System.out.print(a[k][l]+"|| \t");
+                }
+                System.out.println("");
+            }
+            xim=-xim;
+            for (int k = 2; k <x; k++) {
+                
+            }
+        }
         
         
-        
+        return s;
+    }
+    public int gdomayor(String cad,int n){
+        String s, ca[] = cad.split("\\s");
+        s = ca[0];
+        char q = ca[0].charAt(s.length() - 1);
+       return Integer.parseInt(""+q);
+    }
+    
+    public String [] Esp(String cad){
+        String s[]=cad.split("\\s");
         return s;
     }
 }
