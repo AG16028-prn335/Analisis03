@@ -156,7 +156,6 @@ public class General extends javax.swing.JFrame {
         lblRaiz.setText("RAIZ: ");
         getContentPane().add(lblRaiz, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 40, -1));
 
-        cmbFunciones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Selecione una ecuacion--", "e^(x-1) -1.5x=0", "2senx=x", "e^x - 4 = 0", "e^-(x-1)*sen(x) = 1", "4sen(x) = e^x" }));
         cmbFunciones.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbFuncionesItemStateChanged(evt);
@@ -213,11 +212,11 @@ public class General extends javax.swing.JFrame {
         ver(true);
         i = 1;
         cmbFunciones.removeAllItems();
-        cmbFunciones.addItem("x^5-3x^4-23x^3+55x^2+74x-120");
-        cmbFunciones.addItem("x^6-7x^4+x^3+3x-1");
+        cmbFunciones.addItem("x^5 -3x^4 -23x^3 +55x^2 +74x -120");
+        cmbFunciones.addItem("x^6 -7x^4 +x^3 +3x -1");
         cmbFunciones.addItem("ln(1+x)-cos(x)");
-        cmbFunciones.addItem("10sin(x)+3cos(x)");
-        cmbFunciones.addItem("e^(3x-3)-ln(x-1)^2+1");
+        cmbFunciones.addItem("10sin(x) +3cos(x)");
+        cmbFunciones.addItem("e^(3x-3) -ln(x-1)^2+1");
         cmbFunciones.addItem("cos(0.785-x(1+x^2)^1/2)");
     }//GEN-LAST:event_btnSecanteActionPerformed
 
@@ -251,7 +250,8 @@ public class General extends javax.swing.JFrame {
     private void cmbFuncionesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFuncionesItemStateChanged
         limpiar();
         String f = String.valueOf(cmbFunciones.getSelectedItem());
-        switch (i) {
+        if(f!=null){
+            switch (i) {
             case 1:
                 {
                     model = s.secante(f, 0.2, 0.5);
@@ -310,6 +310,7 @@ public class General extends javax.swing.JFrame {
             default:
                 break;
         }
+        }
     }//GEN-LAST:event_cmbFuncionesItemStateChanged
 
     private void btnBairsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBairsActionPerformed
@@ -342,6 +343,7 @@ public class General extends javax.swing.JFrame {
         cmbFunciones.addItem("----SELECCIONE----");
         cmbFunciones.addItem("x^4 +x^3 +0.56x^2 -1.44x -2.88");
         cmbFunciones.addItem("x^4 -3x^2 +5x +2");
+        cmbFunciones.removeAllItems();
     }//GEN-LAST:event_btnFerraActionPerformed
 
     private void btnFerraItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_btnFerraItemStateChanged
@@ -353,13 +355,12 @@ public class General extends javax.swing.JFrame {
       Oculta();
       ver(true);
         i = 4;
-        cmbFunciones.removeAllItems();
-        cmbFunciones.addItem("x^3+3x-1");
-        cmbFunciones.addItem("x^3-4.65x^2-49.92x-76.69");
-        cmbFunciones.addItem("x^4+x^3+0.56x^2-1.44x-2.88");
-        cmbFunciones.addItem("x^4-3x^2+5x+2");
-        cmbFunciones.addItem("x^5-3x^4-23x^3+55x^2+74x-120");
-        cmbFunciones.addItem("x^6-7x^4+x^3+3x-1");
+        cmbFunciones.addItem("x^3 +3x -1");
+        cmbFunciones.addItem("x^3 -4.65x^2 -49.92x -76.69");
+        cmbFunciones.addItem("x^4 +x^3 +0.56x^2 -1.44x -2.88");
+        cmbFunciones.addItem("x^4 -3x^2 +5x +2");
+        cmbFunciones.addItem("x^5 -3x^4 -23x^3 +55x^2 +74x -120");
+        cmbFunciones.addItem("x^6 -7x^4 +x^3 +3x -1");
         
     }//GEN-LAST:event_btnHorActionPerformed
     public void ver(boolean i) {
