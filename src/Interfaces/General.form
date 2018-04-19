@@ -202,14 +202,7 @@
     <Component class="javax.swing.JComboBox" name="cmbFunciones">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="6">
-            <StringItem index="0" value="--Selecione una ecuacion--"/>
-            <StringItem index="1" value="e^(x-1) -1.5x=0"/>
-            <StringItem index="2" value="2senx=x"/>
-            <StringItem index="3" value="e^x - 4 = 0"/>
-            <StringItem index="4" value="e^-(x-1)*sen(x) = 1"/>
-            <StringItem index="5" value="4sen(x) = e^x"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <Events>
