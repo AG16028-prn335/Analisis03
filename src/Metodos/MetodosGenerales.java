@@ -178,11 +178,10 @@ public class MetodosGenerales {
     
     public String[] DivSintComp(double xr,double xim,String s[],int n){
         Object a[][]= new Object[3][s.length];
-        double nxr=0,nxim=xim,anxim=nxim;
-        String pas[]=new String[s.length];
-        String v[];
-        String paso[]=new String[s.length*2];
-        
+        double nxr=0,nxim=xim,anxim;
+        String pas[]=new String[s.length]; 
+        String v[] = null;
+        String paso[];
         int x=s.length;
         for (int i = 0; i <s.length; i++) {
             a[0][i]=s[i];
@@ -203,25 +202,60 @@ public class MetodosGenerales {
                }else if(k==1){
                    for (int l = 0; l <s.length; l++) {
                        pas[l]=String.valueOf(a[1][l]);
-                   }
-                   paso[0]=pas[0]; int t=1;
-                   for (int l = 0; l < pas.length; l++) {
+                   }int t=0;
+                   for (int l = 1; l < pas.length; l++) {
                    v=Esp(String.valueOf(pas[l]));
                        for (int m = 0; m < v.length; m++) {
-                           System.out.println("vec: "+v[m]);
+                           System.out.println("v: "+v[m]+" m:"+m);
                        }
+                  t++;
+                   }
+                   paso= new String[t*2 +1];
+                   paso[0]=pas[0];
+                   t=1;
+                    for (int l = 1; l < pas.length; l++) {
+                   v=Esp(String.valueOf(pas[l]));
+                       paso[t]=v[0];
+                       paso[t+1]=v[1];
+                       t=t+2;
+                   }
+                    for (int l = 0; l < paso.length; l++) {
+                        System.out.println("paso: "+paso[l]+ " pos: "+l);
+                   }
+                    t=1;
+                    xim=-xim;
+                   for (int e = 2; e <3; e++) {
+                       for (int l = 1; l <x-1; l++) {
+                       if(l==1){
+                           System.out.println("vreal: "+paso[t]+"longitud v:"+paso.length);
+                           System.out.println("vim: "+paso[t+1]);
+                           a[e][l]=String.valueOf((xr+Double.parseDouble(paso[t]))  +" "+(xim+Double.parseDouble(paso[t+1])));
+                           nxr=xr+Double.parseDouble(paso[t]);
+                           nxim=xim+Double.parseDouble(paso[t+1]);
+                       }else{
+                           a[e][l]=(Double.parseDouble(paso[t])+((nxr*xr)-(nxim*xim)))+" "+(Double.parseDouble(paso[t+1])+(nxr*xim+xr*nxim));
+                           anxim=nxim;
+                           nxim=Double.parseDouble(paso[t+1])+(nxr*xim+xr*nxim);
+                           nxr=Double.parseDouble(paso[t])+((nxr*xr)-(anxim*xim));
+                       }
+                       t=t+2;
+                   }
                    }
                }
             }
-            for (int k = 0; k < 3; k++) {
+        }
+        for (int k = 0; k < 3; k++) {
                 for (int l = 0; l < s.length; l++) {
                     System.out.print(a[k][l]+"|| \t");
                 }
                 System.out.println("");
             }
-            xim=-xim;
-            for (int k = 2; k <x; k++) {
-                
+            
+        for (int i = 0; i <s.length; i++) {
+            if(a[2][i]!=null){
+                s[i]=(String)a[2][i];
+            }else{
+                s[i]="";
             }
         }
         
