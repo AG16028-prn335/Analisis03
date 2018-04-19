@@ -5,7 +5,14 @@
  */
 package Interfaces;
 
+import Metodos.Ferrari;
+import Metodos.MetodoHorner;
+import Metodos.MetodoMuller;
+import Metodos.MetodosGenerales;
 import Metodos.Secante;
+import Metodos.Tartaglia;
+import Metodos.bairstow;
+import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -13,8 +20,20 @@ import javax.swing.table.DefaultTableModel;
  * @author robal
  */
 public class General extends javax.swing.JFrame {
-    Secante s= new Secante();
+
+    MetodosGenerales mg = new MetodosGenerales();
+    Secante s = new Secante();
+    Tartaglia t = new Tartaglia();
+    Ferrari F = new Ferrari();
+    MetodoHorner h = new MetodoHorner();
+    MetodoMuller M= new MetodoMuller();
+    bairstow b= new bairstow();
+    
+    int i = 0;
     DefaultTableModel model = new DefaultTableModel();
+    DefaultListModel modelo1 = new DefaultListModel();
+    DefaultListModel modelo2 = new DefaultListModel();
+
     /**
      * Creates new form Secante
      */
@@ -22,6 +41,7 @@ public class General extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         ver(false);
+
     }
 
     /**
@@ -40,13 +60,13 @@ public class General extends javax.swing.JFrame {
         btnSecante = new javax.swing.JButton();
         btnFerra = new javax.swing.JButton();
         btnTart = new javax.swing.JButton();
-        btnHor = new javax.swing.JButton();
         btnMuller = new javax.swing.JButton();
-        cmbFunciones = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         lblRaiz = new javax.swing.JLabel();
+        cmbFunciones = new javax.swing.JComboBox();
         txtRaiz = new javax.swing.JTextField();
         lblError = new javax.swing.JLabel();
+        btnHor = new javax.swing.JButton();
         txtError = new javax.swing.JTextField();
         btnBairs = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -120,14 +140,6 @@ public class General extends javax.swing.JFrame {
         });
         getContentPane().add(btnTart, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 120, 30));
 
-        btnHor.setText("Metodo Horner");
-        btnHor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHorActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnHor, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, 110, 30));
-
         btnMuller.setText("Metodo Müller");
         btnMuller.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,6 +147,14 @@ public class General extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnMuller, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, 110, 30));
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("F(x)=");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, 30, 30));
+
+        lblRaiz.setForeground(new java.awt.Color(255, 255, 255));
+        lblRaiz.setText("RAIZ: ");
+        getContentPane().add(lblRaiz, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 40, -1));
 
         cmbFunciones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Selecione una ecuacion--", "e^(x-1) -1.5x=0", "2senx=x", "e^x - 4 = 0", "e^-(x-1)*sen(x) = 1", "4sen(x) = e^x" }));
         cmbFunciones.addItemListener(new java.awt.event.ItemListener() {
@@ -148,19 +168,19 @@ public class General extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cmbFunciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 250, -1));
-
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("F(x)=");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, 30, 30));
-
-        lblRaiz.setForeground(new java.awt.Color(255, 255, 255));
-        lblRaiz.setText("RAIZ: ");
-        getContentPane().add(lblRaiz, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 40, -1));
         getContentPane().add(txtRaiz, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 160, -1));
 
         lblError.setForeground(new java.awt.Color(255, 255, 255));
         lblError.setText("ERROR: ");
         getContentPane().add(lblError, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, -1, -1));
+
+        btnHor.setText("Metodo Horner");
+        btnHor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHorActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnHor, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, 110, 30));
         getContentPane().add(txtError, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, 190, -1));
 
         btnBairs.setText("Metodo Bairstow");
@@ -191,42 +211,30 @@ public class General extends javax.swing.JFrame {
     private void btnSecanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSecanteActionPerformed
         Oculta();
         ver(true);
+        i = 1;
         cmbFunciones.removeAllItems();
         cmbFunciones.addItem("x^5-3x^4-23x^3+55x^2+74x-120");
         cmbFunciones.addItem("x^6-7x^4+x^3+3x-1");
         cmbFunciones.addItem("ln(1+x)-cos(x)");
         cmbFunciones.addItem("10sin(x)+3cos(x)");
         cmbFunciones.addItem("e^(3x-3)-ln(x-1)^2+1");
-        cmbFunciones.addItem("cos(0.785-x(1+x^2)^1/2");
-        
+        cmbFunciones.addItem("cos(0.785-x(1+x^2)^1/2)");
     }//GEN-LAST:event_btnSecanteActionPerformed
 
     private void btnTartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTartActionPerformed
         Oculta();
         ver(true);
+        i = 2;
         jScrollPane1.setVisible(false);
         jLabel3.setVisible(false);
         cmbFunciones.removeAllItems();
-        cmbFunciones.addItem("----SELECCIONE----");
         cmbFunciones.addItem("x^3 +3x -1");
         cmbFunciones.addItem("x^3 -4.65x^2 -49.92x -76.69");
-
     }//GEN-LAST:event_btnTartActionPerformed
-
-    private void btnHorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHorActionPerformed
-        Oculta();
-        cmbFunciones.removeAllItems();
-        cmbFunciones.addItem("----SELECCIONE----");
-        cmbFunciones.addItem("x^3 +3x -1");
-        cmbFunciones.addItem("x^3 -4.65x^2 -49.92x -76.69");
-        cmbFunciones.addItem("x^4 +x^3 +0.56x^2 -1.44x -2.88");
-        cmbFunciones.addItem("x^4 -3x^2 +5x +2");
-        cmbFunciones.addItem("x^5 -3x^4 -23x^3 +55x^2 +74x -120");
-        cmbFunciones.addItem("x^6 -7x^4 +x^3 +3x -1");
-        ver(true);    }//GEN-LAST:event_btnHorActionPerformed
 
     private void btnMullerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMullerActionPerformed
         Oculta();
+        i = 5;
         cmbFunciones.removeAllItems();
         cmbFunciones.addItem("----SELECCIONE----");
         cmbFunciones.addItem("x^3 +3x -1");
@@ -241,17 +249,72 @@ public class General extends javax.swing.JFrame {
         ver(true);    }//GEN-LAST:event_btnMullerActionPerformed
 
     private void cmbFuncionesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFuncionesItemStateChanged
-       limpiar();
-        String f= String.valueOf(cmbFunciones.getSelectedItem());
-        model=s.secante(f, 0.2, 0.5);
-        
-        tblTabal.setModel(model);
-        
+        limpiar();
+        String f = String.valueOf(cmbFunciones.getSelectedItem());
+        switch (i) {
+            case 1:
+                {
+                    model = s.secante(f, 0.2, 0.5);
+                    tblTabal.setModel(model);
+                    int j = tblTabal.getRowCount();
+                    txtRaiz.setText(tblTabal.getValueAt((j - 1), 3).toString());
+                    txtError.setText(tblTabal.getValueAt((j - 1), 4).toString());
+                    break;
+                }
+            case 2:
+                {
+//                    modelo1=t.tartaglia(mg.Nox(mg.RegExp(f)));
+//                    tblTabal.setModel(model);
+//                    int j = tblTabal.getRowCount();
+//                    txtRaiz.setText(tblTabal.getValueAt((j - 1), 3).toString());
+//                    txtError.setText(tblTabal.getValueAt((j - 1), 4).toString());
+                    break;
+                }
+            case 3:
+                {
+//                    model=F.ferrari(f, 0.2, 0.5);
+//                    tblTabal.setModel(model);
+//                    int j=tblTabal.getRowCount();
+//                    txtRaiz.setText(tblTabal.getValueAt((j-1), 3).toString());
+//                    txtError.setText(tblTabal.getValueAt((j-1), 4).toString());
+                    break;
+                }
+            case 4:
+                {
+                    model=h.Horner(f, 0.2, 0.5);
+                    tblTabal.setModel(model);
+                    int j=tblTabal.getRowCount();
+                    txtRaiz.setText(tblTabal.getValueAt((j-1), 2).toString());
+                    txtError.setText(tblTabal.getValueAt((j-1), 3).toString());
+                    break;
+                }
+            case 5:
+                {
+                    // model=M.Muller(f, 0.2, 0.5);
+                    tblTabal.setModel(model);
+                    int j=tblTabal.getRowCount();
+                    txtRaiz.setText(tblTabal.getValueAt((j-1), 3).toString());
+                    txtError.setText(tblTabal.getValueAt((j-1), 4).toString());
+                    break;
+                }
+            case 6:
+                {
+                    model=h.Horner(f, 0.2, 0.5);
+                    tblTabal.setModel(model);
+                    int j=tblTabal.getRowCount();
+                    txtRaiz.setText(tblTabal.getValueAt((j-1), 3).toString());
+                    txtError.setText(tblTabal.getValueAt((j-1), 4).toString());
+                    break;
+                }
+            default:
+                break;
+        }
     }//GEN-LAST:event_cmbFuncionesItemStateChanged
 
     private void btnBairsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBairsActionPerformed
         Oculta();
         ver(true);
+        i = 6;
         jScrollPane1.setVisible(false);
         jLabel3.setVisible(false);
         cmbFunciones.removeAllItems();
@@ -271,6 +334,7 @@ public class General extends javax.swing.JFrame {
     private void btnFerraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFerraActionPerformed
         Oculta();
         ver(true);
+        i = 3;
         jScrollPane1.setVisible(false);
         jLabel3.setVisible(false);
         cmbFunciones.removeAllItems();
@@ -283,6 +347,20 @@ public class General extends javax.swing.JFrame {
         Oculta();
         ver(true);
     }//GEN-LAST:event_btnFerraItemStateChanged
+
+    private void btnHorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHorActionPerformed
+      Oculta();
+      ver(true);
+        i = 4;
+        cmbFunciones.removeAllItems();
+        cmbFunciones.addItem("x^3+3x-1");
+        cmbFunciones.addItem("x^3-4.65x^2-49.92x-76.69");
+        cmbFunciones.addItem("x^4+x^3+0.56x^2-1.44x-2.88");
+        cmbFunciones.addItem("x^4-3x^2+5x+2");
+        cmbFunciones.addItem("x^5-3x^4-23x^3+55x^2+74x-120");
+        cmbFunciones.addItem("x^6-7x^4+x^3+3x-1");
+        
+    }//GEN-LAST:event_btnHorActionPerformed
     public void ver(boolean i) {
         cmbFunciones.setVisible(i);
         txtError.setVisible(i);
@@ -303,14 +381,14 @@ public class General extends javax.swing.JFrame {
         btnTart.setVisible(false);
 
     }
-    
+
     public void limpiar() {
-      int row = model.getRowCount();
+        int row = model.getRowCount();
         for (int i = 0; i < row; i++) {
             model.removeRow(0);
+            //model1.removeRow(0);
         }
     }
-    
 
     /**
      * @param args the command line arguments
