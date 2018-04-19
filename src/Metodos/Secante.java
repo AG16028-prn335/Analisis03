@@ -8,6 +8,7 @@ public class Secante {
     DefaultTableModel modelo = new DefaultTableModel(new Object[]{"iteracion","X(i-1)","Xi","X(i+1)", "Ea%"},0);
     public DefaultTableModel secante(String fun, double x0, double x1) {
         int  i = 0;
+        System.out.println("funcion: "+fun);
         double f0 = 0, f1 = 0, xi = 0, error = 100, nivTolerancia = 0;
         nivTolerancia = (0.5 * Math.pow(10, (-1)));
         f0 = m.Ecuacion(fun, x0);
@@ -23,10 +24,14 @@ public class Secante {
                 if (i != 0) {
                     error = ((xi - x1) / xi) * 100;
                 }
+                if(i==0){
+                    modelo.addRow(new Object []{(i+1),x0, x1,xi,"---"});
+                }else{
+                modelo.addRow(new Object []{(i+1),x0, x1,xi,error});}
                 x0 = x1;
                 x1 = xi;
                 i++;
-                modelo.addRow(new Object []{i,x0, x1,xi,error});
+                
             }
         } else {
             fun="-("+fun+")";
@@ -37,10 +42,14 @@ public class Secante {
                 if (i != 0) {
                     error = ((xi - x1) / xi) * 100;
                 }
+                if(i==0){
+                    modelo.addRow(new Object []{(i+1),x0, x1,xi,"---"});
+                }else{
+                modelo.addRow(new Object []{(i+1),x0, x1,xi,error});}
                 x0 = x1;
                 x1 = xi;
                 i++;
-                modelo.addRow(new Object []{i,x0, x1,xi,error});
+                
             }
         }
         //String s[]={String.valueOf(xi),String.valueOf(error)};

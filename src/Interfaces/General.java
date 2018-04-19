@@ -192,15 +192,13 @@ public class General extends javax.swing.JFrame {
         Oculta();
         ver(true);
         cmbFunciones.removeAllItems();
-        cmbFunciones.addItem("----SELECCIONE----");
-        cmbFunciones.addItem("x^5 -3x^4 -23x^3 +55x^2 +74x -120");
-        cmbFunciones.addItem("x^6 -7x^4 +x^3 +3x -1");
-        cmbFunciones.addItem("ln(1+x) -cos(x)");
-        cmbFunciones.addItem("10sin(x) +3cos(X)");
-        cmbFunciones.addItem("e^(3(x-1)) -ln(x-1)^2 +1");
-        cmbFunciones.addItem("cos(0.785 -x√(1+x^2)");
-        String f= String.valueOf(cmbFunciones.getSelectedItem());
-        model=s.secante(f, 0.2, 0.5);
+        cmbFunciones.addItem("x^5-3x^4-23x^3+55x^2+74x-120");
+        cmbFunciones.addItem("x^6-7x^4+x^3+3x-1");
+        cmbFunciones.addItem("ln(1+x)-cos(x)");
+        cmbFunciones.addItem("10sin(x)+3cos(x)");
+        cmbFunciones.addItem("e^(3x-3)-ln(x-1)^2+1");
+        cmbFunciones.addItem("cos(0.785-x(1+x^2)^1/2");
+        
     }//GEN-LAST:event_btnSecanteActionPerformed
 
     private void btnTartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTartActionPerformed
@@ -243,7 +241,10 @@ public class General extends javax.swing.JFrame {
         ver(true);    }//GEN-LAST:event_btnMullerActionPerformed
 
     private void cmbFuncionesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFuncionesItemStateChanged
-        limpiar();
+       limpiar();
+        String f= String.valueOf(cmbFunciones.getSelectedItem());
+        model=s.secante(f, 0.2, 0.5);
+        
         tblTabal.setModel(model);
         
     }//GEN-LAST:event_cmbFuncionesItemStateChanged
@@ -304,7 +305,7 @@ public class General extends javax.swing.JFrame {
     }
     
     public void limpiar() {
-        int row = model.getRowCount();
+      int row = model.getRowCount();
         for (int i = 0; i < row; i++) {
             model.removeRow(0);
         }
