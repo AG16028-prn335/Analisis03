@@ -1,15 +1,16 @@
 package Metodos;
 
 import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
 
 public class Tartaglia {
 
     MetodosGenerales m = new MetodosGenerales();
-    DefaultListModel modelo1 = new DefaultListModel();
+    DefaultTableModel modelo1 = new DefaultTableModel(new Object[]{"raiz"},0);
 
-    public DefaultListModel tartaglia(String vector[]) {
-        double a = 0, b = 0, c = 0, d, h, g, x1 = 0, teta, p, q;
-        Object x2, x3, irre;
+    public DefaultTableModel tartaglia(String vector[]) {
+        double a = 0, b = 0, c = 0, d, h, g, teta, p, q;
+        Object x1,x2, x3, irre;
         if (Integer.parseInt(vector[0]) != 1) {
             a = Integer.parseInt(vector[1]) / Integer.parseInt(vector[0]);
             b = Integer.parseInt(vector[2]) / Integer.parseInt(vector[0]);
@@ -28,16 +29,16 @@ public class Tartaglia {
             x1 = 2 * Math.sqrt(-h) * Math.cos(teta / 3) - a / 3;
             x2 = 2 * Math.sqrt(-h) * Math.cos(teta / 3 + 120) - a / 3;
             x3 = 2 * Math.sqrt(-h) * Math.cos(teta / 3 + 240) - a / 3;
-            modelo1.addElement(x1);
-            modelo1.addElement(x2);
-            modelo1.addElement(x3);
+            modelo1.addRow(new Object []{x1});
+            modelo1.addRow(new Object []{x2});
+            modelo1.addRow(new Object []{x3});
         } else if (d == 0) {
             p = 3 * h;
             q = 2 * g;
             x1 = -((3 * q) / (2 * p)) - a / 3;
             x2 = ((-4 * Math.pow(p, 2)) / (9 * p)) - a / 3;
-            modelo1.addElement(x1);
-            modelo1.addElement(x2);
+            modelo1.addRow(new Object []{x1});
+            modelo1.addRow(new Object []{x2});
         } else {
             p = Math.cbrt((-g + Math.sqrt(d)));
             q = Math.cbrt((-g - Math.sqrt(d)));
@@ -45,9 +46,9 @@ public class Tartaglia {
             irre = ((p - q) * Math.sqrt(3) / 2) + " i";
             x2 = (-((p + q) / 2) - a / 3) + "-" + irre;
             x3 = (-((p + q) / 2) - a / 3) + "+" + irre;
-            modelo1.addElement(x1);
-            modelo1.addElement(x2);
-            modelo1.addElement(x3);
+            modelo1.addRow(new Object []{x1});
+            modelo1.addRow(new Object []{x2});
+            modelo1.addRow(new Object []{x3});
         }
 
         return modelo1;

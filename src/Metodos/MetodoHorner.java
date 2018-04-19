@@ -20,15 +20,16 @@ public class MetodoHorner {
                 System.out.println(coe1);
             }
             while (Math.abs(ea) > es) {
-                
+                modelo.setRowCount(i);
+                modelo.setColumnCount(4);
                 coes = m.DivSintetica(xi, coe.length, coe);
                 r = Double.parseDouble(coes[0]);
                 s = Double.parseDouble(coes[1]);
                 xii = xi - (r / s);
                 ea = ((xii - xi) / xii) * 100;
                 i++;
-               String va[]={""+i,""+xi,""+xii,""+ea};
-                modelo.addRow(va);
+//               String va[]={""+i,""+xi,""+xii,""+ea};
+                modelo.addRow(new Object[]{i,xi,xii,ea});
                 xi = xii;
             }
         }

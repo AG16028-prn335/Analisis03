@@ -12,7 +12,6 @@ import Metodos.MetodosGenerales;
 import Metodos.Secante;
 import Metodos.Tartaglia;
 import Metodos.bairstow;
-import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,14 +24,13 @@ public class General extends javax.swing.JFrame {
     Secante s = new Secante();
     Tartaglia t = new Tartaglia();
     Ferrari F = new Ferrari();
-    MetodoHorner h = new MetodoHorner();
-    MetodoMuller M= new MetodoMuller();
-    bairstow b= new bairstow();
-    
+    MetodoHorner mH = new MetodoHorner();
+    MetodoMuller M = new MetodoMuller();
+    bairstow b = new bairstow();
+
     int i = 0;
     DefaultTableModel model = new DefaultTableModel();
-    DefaultListModel modelo1 = new DefaultListModel();
-    DefaultListModel modelo2 = new DefaultListModel();
+    
 
     /**
      * Creates new form Secante
@@ -211,6 +209,7 @@ public class General extends javax.swing.JFrame {
         Oculta();
         ver(true);
         i = 1;
+        
         cmbFunciones.removeAllItems();
         cmbFunciones.addItem("x^5 -3x^4 -23x^3 +55x^2 +74x -120");
         cmbFunciones.addItem("x^6 -7x^4 +x^3 +3x -1");
@@ -218,24 +217,26 @@ public class General extends javax.swing.JFrame {
         cmbFunciones.addItem("10sin(x) +3cos(x)");
         cmbFunciones.addItem("e^(3x-3) -ln(x-1)^2+1");
         cmbFunciones.addItem("cos(0.785-x(1+x^2)^1/2)");
+
     }//GEN-LAST:event_btnSecanteActionPerformed
 
     private void btnTartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTartActionPerformed
         Oculta();
         ver(true);
         i = 2;
-        jScrollPane1.setVisible(false);
-        jLabel3.setVisible(false);
         cmbFunciones.removeAllItems();
         cmbFunciones.addItem("x^3 +3x -1");
         cmbFunciones.addItem("x^3 -4.65x^2 -49.92x -76.69");
+        lblRaiz.setVisible(false);
+        lblError.setVisible(false);
+        txtError.setVisible(false);
+        txtRaiz.setVisible(false);
     }//GEN-LAST:event_btnTartActionPerformed
 
     private void btnMullerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMullerActionPerformed
         Oculta();
         i = 5;
         cmbFunciones.removeAllItems();
-        cmbFunciones.addItem("----SELECCIONE----");
         cmbFunciones.addItem("x^3 +3x -1");
         cmbFunciones.addItem("x^3 -4.65x^2 -49.92x -76.69");
         cmbFunciones.addItem("x^4 +x^3 +0.56x^2 -1.44x -2.88");
@@ -248,30 +249,61 @@ public class General extends javax.swing.JFrame {
         ver(true);    }//GEN-LAST:event_btnMullerActionPerformed
 
     private void cmbFuncionesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFuncionesItemStateChanged
+        double n=0, n1=0;
         limpiar();
         String f = String.valueOf(cmbFunciones.getSelectedItem());
-        if(f!=null){
+        System.out.println("funcion: " + f);
+        if (f != null) {
             switch (i) {
-            case 1:
-                {
-                    model = s.secante(f, 0.2, 0.5);
+                case 1: {
+                    if (cmbFunciones.getSelectedIndex() == 0) {
+                        n = 0.25;
+                        n1 = 1;
+                    }
+                    else if(cmbFunciones.getSelectedIndex() == 1){
+                        n = 0.2;
+                        n1 = 0.5;
+                    }
+                    else if(cmbFunciones.getSelectedIndex() == 2){
+                        n = 0.7;
+                        n1 = 0.9;
+                    }
+                    else if(cmbFunciones.getSelectedIndex() == 3){
+                        n = 2.8;
+                        n1 = 3;
+                    }
+                    else if(cmbFunciones.getSelectedIndex() == 4){
+                        n = 1.2;
+                        n1 = 1.5;
+                    }
+                    else if(cmbFunciones.getSelectedIndex() == 5){
+                        n = 0.5;
+                        n1 = 0.7;
+                    }
+                    model = s.secante(f, n, n1);
                     tblTabal.setModel(model);
                     int j = tblTabal.getRowCount();
                     txtRaiz.setText(tblTabal.getValueAt((j - 1), 3).toString());
                     txtError.setText(tblTabal.getValueAt((j - 1), 4).toString());
                     break;
                 }
-            case 2:
-                {
-//                    modelo1=t.tartaglia(mg.Nox(mg.RegExp(f)));
-//                    tblTabal.setModel(model);
-//                    int j = tblTabal.getRowCount();
-//                    txtRaiz.setText(tblTabal.getValueAt((j - 1), 3).toString());
-//                    txtError.setText(tblTabal.getValueAt((j - 1), 4).toString());
+                case 2: {
+                    if (cmbFunciones.getSelectedIndex() == 0) {
+                        n = 0.2;
+                        n1 = 0.5;
+                    }
+                    else if(cmbFunciones.getSelectedIndex() == 1){
+                        n = 10;
+                        n1 = 10.5;
+                    }
+                    model = t.tartaglia(mg.Nox(mg.RegExp(f)));
+                    tblTabal.setModel(model);
+                    int j = tblTabal.getRowCount();
+                    txtRaiz.setText(tblTabal.getValueAt((j - 1), 0).toString());
+                    
                     break;
                 }
-            case 3:
-                {
+                case 3: {
 //                    model=F.ferrari(f, 0.2, 0.5);
 //                    tblTabal.setModel(model);
 //                    int j=tblTabal.getRowCount();
@@ -280,36 +312,33 @@ public class General extends javax.swing.JFrame {
                     //
                     break;
                 }
-            case 4:
-                {
-                    model=h.Horner(f, 0.2, 0.5);
+                case 4: {
+                    model = mH.Horner(f, 0.2, 0.5);
                     tblTabal.setModel(model);
-                    int j=tblTabal.getRowCount();
-                    txtRaiz.setText(tblTabal.getValueAt((j-1), 2).toString());
-                    txtError.setText(tblTabal.getValueAt((j-1), 3).toString());
+                    int j = tblTabal.getRowCount();
+                    txtRaiz.setText(tblTabal.getValueAt((j - 1), 2).toString());
+                    txtError.setText(tblTabal.getValueAt((j - 1), 3).toString());
                     break;
                 }
-            case 5:
-                {
+                case 5: {
                     // model=M.Muller(f, 0.2, 0.5);
                     tblTabal.setModel(model);
-                    int j=tblTabal.getRowCount();
-                    txtRaiz.setText(tblTabal.getValueAt((j-1), 3).toString());
-                    txtError.setText(tblTabal.getValueAt((j-1), 4).toString());
+                    int j = tblTabal.getRowCount();
+                    txtRaiz.setText(tblTabal.getValueAt((j - 1), 3).toString());
+                    txtError.setText(tblTabal.getValueAt((j - 1), 4).toString());
                     break;
                 }
-            case 6:
-                {
-                    model=h.Horner(f, 0.2, 0.5);
+                case 6: {
+                    //model=h.Horner(f, 0.2, 0.5);
                     tblTabal.setModel(model);
-                    int j=tblTabal.getRowCount();
-                    txtRaiz.setText(tblTabal.getValueAt((j-1), 3).toString());
-                    txtError.setText(tblTabal.getValueAt((j-1), 4).toString());
+                    int j = tblTabal.getRowCount();
+                    txtRaiz.setText(tblTabal.getValueAt((j - 1), 3).toString());
+                    txtError.setText(tblTabal.getValueAt((j - 1), 4).toString());
                     break;
                 }
-            default:
-                break;
-        }
+                default:
+                    break;
+            }
         }
     }//GEN-LAST:event_cmbFuncionesItemStateChanged
 
@@ -352,16 +381,17 @@ public class General extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFerraItemStateChanged
 
     private void btnHorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHorActionPerformed
-      Oculta();
-      ver(true);
+        Oculta();
+        ver(true);
         i = 4;
+        cmbFunciones.removeAll();
         cmbFunciones.addItem("x^3 +3x -1");
         cmbFunciones.addItem("x^3 -4.65x^2 -49.92x -76.69");
         cmbFunciones.addItem("x^4 +x^3 +0.56x^2 -1.44x -2.88");
         cmbFunciones.addItem("x^4 -3x^2 +5x +2");
         cmbFunciones.addItem("x^5 -3x^4 -23x^3 +55x^2 +74x -120");
         cmbFunciones.addItem("x^6 -7x^4 +x^3 +3x -1");
-        
+
     }//GEN-LAST:event_btnHorActionPerformed
     public void ver(boolean i) {
         cmbFunciones.setVisible(i);
@@ -386,9 +416,8 @@ public class General extends javax.swing.JFrame {
 
     public void limpiar() {
         int row = model.getRowCount();
-        for (int i = 0; i < row; i++) {
+        for (int k = 0; k < row; k++) {
             model.removeRow(0);
-            //model1.removeRow(0);
         }
     }
 
