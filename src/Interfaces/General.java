@@ -57,7 +57,6 @@ public class General extends javax.swing.JFrame {
         btnSecante = new javax.swing.JButton();
         btnFerra = new javax.swing.JButton();
         btnTart = new javax.swing.JButton();
-        btnMuller = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         lblRaiz = new javax.swing.JLabel();
         cmbFunciones = new javax.swing.JComboBox();
@@ -66,6 +65,7 @@ public class General extends javax.swing.JFrame {
         btnHor = new javax.swing.JButton();
         txtError = new javax.swing.JTextField();
         btnBairs = new javax.swing.JButton();
+        btnMuller = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -137,14 +137,6 @@ public class General extends javax.swing.JFrame {
         });
         getContentPane().add(btnTart, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 120, 30));
 
-        btnMuller.setText("Metodo Müller");
-        btnMuller.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMullerActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnMuller, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, 110, 30));
-
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("F(x)=");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, 30, 30));
@@ -186,6 +178,14 @@ public class General extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnBairs, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 50, 130, 30));
+
+        btnMuller.setText("Metodo Müller");
+        btnMuller.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMullerActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnMuller, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, 110, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo-negro.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -230,25 +230,11 @@ public class General extends javax.swing.JFrame {
         lblError.setVisible(false);
         txtError.setVisible(false);
         txtRaiz.setVisible(false);
+        
     }//GEN-LAST:event_btnTartActionPerformed
 
-    private void btnMullerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMullerActionPerformed
-        Oculta();
-        i = 5;
-        cmbFunciones.removeAllItems();
-        cmbFunciones.addItem("x^3 +3x -1");
-        cmbFunciones.addItem("x^3 -4.65x^2 -49.92x -76.69");
-        cmbFunciones.addItem("x^4 +x^3 +0.56x^2 -1.44x -2.88");
-        cmbFunciones.addItem("x^4 -3x^2 +5x +2");
-        cmbFunciones.addItem("x^5 -3x^4 -23x^3 +55x^2 +74x -120");
-        cmbFunciones.addItem("x^6 -7x^4 +x^3 +3x -1");
-        cmbFunciones.addItem("ln(1+x) -cos(x)");
-        cmbFunciones.addItem("10sin(x) +3cos(X)");
-        cmbFunciones.addItem("e^(3(x-1)) -ln(x-1)^2 +1");
-        ver(true);    }//GEN-LAST:event_btnMullerActionPerformed
-
     private void cmbFuncionesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFuncionesItemStateChanged
-        double n = 0, n1 = 0;
+        double n = 0, n1 = 0, n2=0;
         limpiar();
         String f = String.valueOf(cmbFunciones.getSelectedItem());
         System.out.println("funcion: " + f);
@@ -322,11 +308,51 @@ public class General extends javax.swing.JFrame {
                     break;
                 }
                 case 5: {
-                    // model=M.Muller(f, 0.2, 0.5);
+                    if (cmbFunciones.getSelectedIndex() == 0) {
+                        n = 0.3;
+                        n1 = 0.5;
+                        n2= 1;
+                    } else if (cmbFunciones.getSelectedIndex() == 1) {
+                        n = 10;
+                        n1 = 10.2;
+                        n2=10.5;
+                    } else if (cmbFunciones.getSelectedIndex() == 2) {
+                        n = 0;
+                        n1 = 0.5;
+                        n2=2;
+                    } else if (cmbFunciones.getSelectedIndex() == 3) {
+                        n = -3;
+                        n1 = -2.5;
+                        n2=-2;
+                    } else if (cmbFunciones.getSelectedIndex() == 4) {
+                        n = 0;
+                        n1 = 1;
+                        n2=1.5;
+                    } else if (cmbFunciones.getSelectedIndex() == 5) {
+                        n = 0;
+                        n1 = 0.5;
+                        n2=0.7;
+                    }
+                    else if (cmbFunciones.getSelectedIndex() == 6) {
+                        n = 0;
+                        n1 = 0.5;
+                        n2=1;
+                    }
+                    else if (cmbFunciones.getSelectedIndex() == 7) {
+                        n = 5.9;
+                        n1 = 6;
+                        n2=6.1;
+                    }
+                    else if (cmbFunciones.getSelectedIndex() == 8) {
+                        n = 0.5;
+                        n1 = 1;
+                        n2=2;
+                    }
+                    model=M.Muller(f, n,n1,n2);
                     tblTabal.setModel(model);
                     int j = tblTabal.getRowCount();
-                    txtRaiz.setText(tblTabal.getValueAt((j - 1), 3).toString());
-                    txtError.setText(tblTabal.getValueAt((j - 1), 4).toString());
+                    txtRaiz.setText(tblTabal.getValueAt((j - 1), 4).toString());
+                    txtError.setText(tblTabal.getValueAt((j - 1), 5).toString());
                     break;
                 }
                 case 6: {
@@ -350,7 +376,6 @@ public class General extends javax.swing.JFrame {
         jScrollPane1.setVisible(false);
         jLabel3.setVisible(false);
         cmbFunciones.removeAllItems();
-        cmbFunciones.addItem("----SELECCIONE----");
         cmbFunciones.addItem("x^3 +3x -1");
         cmbFunciones.addItem("x^3 -4.65x^2 -49.92x -76.69");
         cmbFunciones.addItem("x^4 +x^3 +0.56x^2 -1.44x -2.88");
@@ -394,6 +419,23 @@ public class General extends javax.swing.JFrame {
         cmbFunciones.addItem("x^6 -7x^4 +x^3 +3x -1");
 
     }//GEN-LAST:event_btnHorActionPerformed
+
+    private void btnMullerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMullerActionPerformed
+        // TODO add your handling code here:
+        Oculta();
+        ver(true);
+        i = 5;
+        cmbFunciones.removeAllItems();
+        cmbFunciones.addItem("x^3 +3x -1");
+        cmbFunciones.addItem("x^3 -4.65x^2 -49.92x -76.69");
+        cmbFunciones.addItem("x^4 +x^3 +0.56x^2 -1.44x -2.88");
+        cmbFunciones.addItem("x^4 -3x^2 +5x +2");
+        cmbFunciones.addItem("x^5 -3x^4 -23x^3 +55x^2 +74x -120");
+        cmbFunciones.addItem("x^6 -7x^4 +x^3 +3x -1");
+        cmbFunciones.addItem("ln(1+x) -cos(x)");
+        cmbFunciones.addItem("10sin(x) +3cos(x)");
+        cmbFunciones.addItem("e^(3x-3) -ln(x-1)^2 +1");
+    }//GEN-LAST:event_btnMullerActionPerformed
     public void ver(boolean i) {
         cmbFunciones.setVisible(i);
         txtError.setVisible(i);
