@@ -277,6 +277,7 @@ public class General extends javax.swing.JFrame {
 //                    int j=tblTabal.getRowCount();
 //                    txtRaiz.setText(tblTabal.getValueAt((j-1), 3).toString());
 //                    txtError.setText(tblTabal.getValueAt((j-1), 4).toString());
+                    //
                     break;
                 }
             case 4:
