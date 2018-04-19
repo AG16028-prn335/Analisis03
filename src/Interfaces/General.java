@@ -5,14 +5,16 @@
  */
 package Interfaces;
 
-import javax.swing.DefaultComboBoxModel;
+import Metodos.Secante;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author robal
  */
 public class General extends javax.swing.JFrame {
-
+    Secante s= new Secante();
+    DefaultTableModel model = new DefaultTableModel();
     /**
      * Creates new form Secante
      */
@@ -32,7 +34,7 @@ public class General extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtbTabal = new javax.swing.JTable();
+        tblTabal = new javax.swing.JTable();
         btnRegresar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         btnSecante = new javax.swing.JButton();
@@ -56,18 +58,15 @@ public class General extends javax.swing.JFrame {
 
         jScrollPane1.setName("METODOS "); // NOI18N
 
-        jtbTabal.setModel(new javax.swing.table.DefaultTableModel(
+        tblTabal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jtbTabal);
+        jScrollPane1.setViewportView(tblTabal);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 830, 230));
 
@@ -200,6 +199,8 @@ public class General extends javax.swing.JFrame {
         cmbFunciones.addItem("10sin(x) +3cos(X)");
         cmbFunciones.addItem("e^(3(x-1)) -ln(x-1)^2 +1");
         cmbFunciones.addItem("cos(0.785 -x√(1+x^2)");
+        String f= String.valueOf(cmbFunciones.getSelectedItem());
+        model=s.secante(f, 0.2, 0.5);
     }//GEN-LAST:event_btnSecanteActionPerformed
 
     private void btnTartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTartActionPerformed
@@ -242,6 +243,9 @@ public class General extends javax.swing.JFrame {
         ver(true);    }//GEN-LAST:event_btnMullerActionPerformed
 
     private void cmbFuncionesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFuncionesItemStateChanged
+        limpiar();
+        tblTabal.setModel(model);
+        
     }//GEN-LAST:event_cmbFuncionesItemStateChanged
 
     private void btnBairsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBairsActionPerformed
@@ -298,6 +302,14 @@ public class General extends javax.swing.JFrame {
         btnTart.setVisible(false);
 
     }
+    
+    public void limpiar() {
+        int row = model.getRowCount();
+        for (int i = 0; i < row; i++) {
+            model.removeRow(0);
+        }
+    }
+    
 
     /**
      * @param args the command line arguments
@@ -348,9 +360,9 @@ public class General extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtbTabal;
     private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblRaiz;
+    private javax.swing.JTable tblTabal;
     private javax.swing.JTextField txtError;
     private javax.swing.JTextField txtRaiz;
     // End of variables declaration//GEN-END:variables
