@@ -1,10 +1,12 @@
 package Metodos;
 
 public class Ferrari {
- Tartaglia t = new Tartaglia();
+
+    Tartaglia t = new Tartaglia();
+
     public double ferrari(String vector[]) {
-        double a =0, b =0, c =0, d1 =0, p = 0, q = 0, r = 0;
-         if (Integer.parseInt(vector[0]) != 1) {
+        double a = 0, b = 0, c = 0, d1 = 0, p = 0, q = 0, r = 0;
+        if (Integer.parseInt(vector[0]) != 1) {
             a = Integer.parseInt(vector[1]) / Integer.parseInt(vector[0]);
             b = Integer.parseInt(vector[2]) / Integer.parseInt(vector[0]);
             c = Integer.parseInt(vector[3]) / Integer.parseInt(vector[0]);

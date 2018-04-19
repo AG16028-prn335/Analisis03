@@ -1,35 +1,42 @@
 package Metodos;
+
+import org.nfunk.jep.type.Complex;
+
 public class bairstow {
-    
-    public double bairstow(String fun, double r, double s, String vector[]) {
-        int numb = vector.length;
-        double Ar=0, As=0;
-        Object b[], c[];
-        b = new Object [numb];
-        c = new Object [numb];
-        double nivTolerancia = (0.5 * Math.pow(10, (2 -3)));
-        //paso 2
-        //encontrando b
-        b[0]=Double.parseDouble(vector[0]);
-        b[1]=Double.parseDouble(vector[1])+(r*Double.parseDouble(String.valueOf(b[0])));
-        for (int i = (numb-3); i >=0; i--) {
-          b[i]=Double.parseDouble(vector[i])+r*Double.parseDouble(String.valueOf(b[i-1]))+s*Double.parseDouble(String.valueOf(b[numb-1]));
-          numb--; 
+    MetodosGenerales m = new MetodosGenerales();
+    public double bairstow(double r0, double s0, String vector[]) {
+        String v[];
+          Complex xii;
+        double Ar, As,r=0,s=0,Ear=100,Eas=100,xi,xreal,xim;
+        double Es=(0.5*Math.pow(10, -1));
+        while(Eas>Es || Ear>Es){
+            v=m.DivSint2(r0, s0, vector.length, vector,3);
+        As=(-Double.parseDouble(v[1])*Double.parseDouble(v[2]))+(Double.parseDouble(v[3])*Double.parseDouble(v[0]));
+        As=As/(((-Math.pow(Double.parseDouble(v[3]), 2)/Double.parseDouble(v[2]))+Double.parseDouble(v[4]))*Double.parseDouble(v[2]));
+        Ar=-Double.parseDouble(v[0])-(Double.parseDouble(v[3])*As);
+        Ar=Ar/Double.parseDouble(v[2]);
+        r = r0 + Ar;
+        s = s0 + As;
+        Ear = Math.abs(Ar / r) * 100;
+        Eas = Math.abs(As / s) * 100;
+        r0=r;
+        s0=s;
         }
-        //encontrando c
-        c[0]=b[0];
-        c[1]=Double.parseDouble(String.valueOf(b[1]))+(r*Double.parseDouble(String.valueOf(b[0])));
-        for (int i = (numb-3); i >=0; i--) {
-          c[i]=Double.parseDouble(String.valueOf(b[i]))+r*Double.parseDouble(String.valueOf(c[i-1]))+s*Double.parseDouble(String.valueOf(c[numb-1]));
-          numb--; 
+        if(m.Discriminante(r, s, 0, 2)<0){
+           xii=m.Comple(r, s);
+           xreal=xii.re();
+           xim=xii.im();
+        }else if(m.Discriminante(r, s, 0, 2)==0){
+            xi=r/2;
+        }else{
+        
         }
-        //metodo de reduccion
-       As= ((Double.parseDouble(String.valueOf(c[0])))*(-Double.parseDouble(String.valueOf(b[numb-1])))-(Double.parseDouble(String.valueOf(c[1])))*(Double.parseDouble(String.valueOf(b[numb-1]))));
-       As=As/(Double.parseDouble(String.valueOf(c[2]))*Double.parseDouble(String.valueOf(c[0]))-(Double.parseDouble(String.valueOf(c[1])))*Double.parseDouble(String.valueOf(c[1])));
-       Ar=((-Double.parseDouble(String.valueOf(b[numb-1])))-(Double.parseDouble(String.valueOf(c[2])))*As)/Double.parseDouble(String.valueOf(c[1]));
-       
+        
+    return 0;    
+    }
+    public String[] DivComple(String raiz[],int n, String coefi[]){
         
         
-        return 0;
+       return raiz; 
     }
 }

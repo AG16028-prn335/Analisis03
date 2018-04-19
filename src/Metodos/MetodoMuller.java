@@ -16,9 +16,9 @@ public class MetodoMuller {
             b=(a*h1)+s1;
             c=m.Ecuacion(cad,x2);
             if(b<0){
-                x3=x2+(-2*c/(b-m.Discriminante(a, b, c)));
+                x3=x2+(-2*c/(b-m.Discriminante(a, b, c,1)));
             }else{
-                x3=x2+(-2*c/(b+m.Discriminante(a, b, c)));
+                x3=x2+(-2*c/(b+m.Discriminante(a, b, c,1)));
             }
             ea=((x3-x2)/x3)*100;
             x=x1;x1=x2;x2=x3;
