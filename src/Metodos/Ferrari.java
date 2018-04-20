@@ -71,7 +71,8 @@ public class Ferrari {
             System.out.println("w:"+w);
             //(Math.pow(v, 2) - 4 * (u - w))<0
             if((Math.pow(u, 2) - r)<0){
-                System.out.println("vale madres---");
+               double ww=Math.sqrt(-(Math.pow(u, 2) - r));
+               xii= String.valueOf((v/2)-(a/4))+"("+String.valueOf(((Math.pow(v,2))-4*u)+"+"+4*ww)+")^0.5";
             }else{
             x1 = (v + Math.sqrt((Math.pow(v, 2) - 4 * (u - w)))) / 2 - a / 4;
             x2 = (v - Math.sqrt((Math.pow(v, 2) - 4 * (u - w)))) / 2 - a / 4;
